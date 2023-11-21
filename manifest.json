@@ -1,13 +1,28 @@
 {
-  "name": "Whatsapp pdf viewer",
+  "manifest_version": 2,
+  "name": "whatsapp pdf viewer",
   "version": "1.0",
-  "description": "Build an Basic Extension!",
-  "permissions": ["activeTab"],
   "browser_action": {
+    "default_icon": "img/icon32.png",
     "default_popup": "index.html",
-    "default_icon": {
-      "32": "img/icon32.png"
-    }
+    "default_title": "PDF Detector"
   },
-  "manifest_version": 2
+  "permissions": [
+    "activeTab",
+    "storage",
+    "webRequestBlocking",
+    "https://*/*",
+    "https://*/",
+    "http://*/*"
+  ],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["popup.js"]
+    }
+  ]
 }
